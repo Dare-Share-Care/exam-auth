@@ -1,7 +1,7 @@
 ﻿version: '3.8'
 
 services:
-  orders.web:
+  mtogo.auth:
     image: mtogo.auth
     build:
       context: .
