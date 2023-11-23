@@ -19,11 +19,11 @@ jobs:
         dotnet-version: '7.0.306'
 
     - name: Restore dependencies
-      run: dotnet restore test/Auth.Test  # Change to the correct test project path
+      run: dotnet restore test/Auth.Test
 
     - name: Run tests
       run: dotnet test --configuration Release test/Auth.Test
 
-#    - name: Build and run Docker Compose
-#      run: |
-#        docker-compose -f docker-compose.yml up -d
+    - name: Build and run Docker Compose
+      run: |
+        docker-compose -f docker-compose.yml up -d

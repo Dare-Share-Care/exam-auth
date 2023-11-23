@@ -1,0 +1,16 @@
+﻿version: '3.8'
+
+services:
+  orders.web:
+    image: mtogo.auth
+    build:
+      context: .
+      dockerfile: src/Auth.Web/Dockerfile
+    ports:
+      - "8083:80"
+    networks:
+      - kafka
+
+networks:
+  kafka:
+    external: true
