@@ -10,6 +10,8 @@
     <ItemGroup>
       <PackageReference Include="Ardalis.Specification" Version="7.0.0" />
       <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="7.0.0" />
+      <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.14">
         <PrivateAssets>all</PrivateAssets>
@@ -26,13 +28,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Data\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Content Include="..\..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <Folder Include="Models\ViewModels\" />
+      <Folder Include="Specifications\" />
     </ItemGroup>
 
 </Project>
