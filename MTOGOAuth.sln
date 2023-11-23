@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Test", "test\Auth.Test\Auth.Test.csproj", "{4A08A0EC-D16A-4628-BB72-295EC9313C8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Web", "src\Auth.Web\Auth.Web.csproj", "{F34131F5-F6CD-417E-8746-10601CA47D97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A08A0EC-D16A-4628-BB72-295EC9313C8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A08A0EC-D16A-4628-BB72-295EC9313C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A08A0EC-D16A-4628-BB72-295EC9313C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A08A0EC-D16A-4628-BB72-295EC9313C8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F34131F5-F6CD-417E-8746-10601CA47D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34131F5-F6CD-417E-8746-10601CA47D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34131F5-F6CD-417E-8746-10601CA47D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34131F5-F6CD-417E-8746-10601CA47D97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
