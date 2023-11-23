@@ -2,6 +2,7 @@
 
 services:
   mtogo.auth:
+    container_name: mtogo-auth
     image: mtogo.auth
     build:
       context: .
