@@ -2,8 +2,9 @@ using Auth.Web.Entities;
 using Auth.Web.Interfaces.DomainServices;
 using Auth.Web.Interfaces.Repositories;
 using Auth.Web.Services;
+using Auth.Web.Models.Dto;
 using Moq;
-using MTOGO.Web.Models.Dto.Auth;
+
 
 namespace Auth.Test;
 

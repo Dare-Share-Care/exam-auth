@@ -2,7 +2,6 @@ using Auth.Web.Entities;
 using Auth.Web.Interfaces.DomainServices;
 using Auth.Web.Interfaces.Repositories;
 using Auth.Web.Models.Dto;
-using MTOGO.Web.Models.Dto.Auth;
 
 namespace Auth.Web.Services;
 

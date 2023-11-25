@@ -1,9 +1,9 @@
 using Auth.Web.Data;
 using Auth.Web.Entities;
 using Auth.Web.Services;
+using Auth.Web.Models.Dto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MTOGO.Web.Models.Dto.Auth;
 
 namespace Auth.Test;
 
