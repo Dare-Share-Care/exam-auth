@@ -47,4 +47,31 @@ public class AuthServiceUnitTests
         Assert.Equal(1, result.RoleId); //Is customer role
         Assert.Equal(dto.Email, result.Email); //Email is correct
     }
+    
+    [Fact]
+    public async Task RegisterCustomerAsync_ShouldThrowExceptionIfEmailAlreadyExists()
+    {
+        //Arrange
+        var dto = new RegisterDto
+        {
+            Email = "test@example.com",
+            Password = "password"
+        };
+            
+        //Setup the mock
+        var user = new User
+        {
+            Id = 1,
+            Email = dto.Email,
+            Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+            RoleId = 1 //Customer
+        };
+            
+        //Assure that the repository returns a list with one user
+        _userRepositoryMock.Setup(x => x.ListAsync(new CancellationToken()))
+            .ReturnsAsync(new List<User> {user});
+
+        //Act + Assert
+        await Assert.ThrowsAsync<Exception>(() => _authService.RegisterCustomerAsync(dto));
+    }
 }
