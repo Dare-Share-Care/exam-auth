@@ -1,6 +1,6 @@
 using Auth.Web.Interfaces.DomainServices;
+using Auth.Web.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
-using MTOGO.Web.Models.Dto.Auth;
 
 namespace Auth.Web.Controllers;
 

@@ -1,5 +1,5 @@
 using Auth.Web.Models.Dto;
-using MTOGO.Web.Models.Dto.Auth;
+using Auth.Web.Models.Dto;
 
 namespace Auth.Web.Interfaces.DomainServices;
 
