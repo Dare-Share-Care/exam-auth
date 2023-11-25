@@ -3,6 +3,7 @@ using Auth.Web.Interfaces.DomainServices;
 using Auth.Web.Interfaces.Repositories;
 using Auth.Web.Services;
 using Auth.Web.Models.Dto;
+using Microsoft.Extensions.Configuration;
 using Moq;
 
 
@@ -12,10 +13,11 @@ public class AuthServiceUnitTests
 {
     private readonly IAuthService _authService;
     private readonly Mock<IRepository<User>> _userRepositoryMock = new();
+    private readonly Mock<IConfiguration> _configurationMock = new();
 
     public AuthServiceUnitTests()
     {
-        _authService = new AuthService(_userRepositoryMock.Object);
+        _authService = new AuthService(_userRepositoryMock.Object, _configurationMock.Object);
     }
 
     [Fact]

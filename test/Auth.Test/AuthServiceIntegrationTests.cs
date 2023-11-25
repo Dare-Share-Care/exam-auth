@@ -3,6 +3,7 @@ using Auth.Web.Entities;
 using Auth.Web.Services;
 using Auth.Web.Models.Dto;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Auth.Test;
@@ -21,7 +22,10 @@ public class AuthServiceIntegrationTests
         await dbContext.Database.EnsureCreatedAsync();
 
         var userRepository = new EfRepository<User>(dbContext);
-        var authService = new AuthService(userRepository);
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .Build();
+        var authService = new AuthService(userRepository, configuration);
 
         var dto = new RegisterDto
         {

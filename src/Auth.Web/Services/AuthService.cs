@@ -12,11 +12,13 @@ namespace Auth.Web.Services;
 
 public class AuthService : IAuthService
 {
+    private readonly IConfiguration _configuration;
     private readonly IRepository<User> _userRepository;
 
-    public AuthService(IRepository<User> userRepository)
+    public AuthService(IRepository<User> userRepository, IConfiguration configuration)
     {
         _userRepository = userRepository;
+        _configuration = configuration;
     }
 
     public async Task<string> LoginAsync(LoginDto dto)
@@ -79,9 +81,8 @@ public class AuthService : IAuthService
             new(ClaimTypes.Role, user.Role.RoleType.ToString())
         };
 
-        //Get JWT Key from .env file
-        DotNetEnv.Env.Load();
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY")!));
+        //Get JWT Key
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]!));
 
         //Create token
         var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
