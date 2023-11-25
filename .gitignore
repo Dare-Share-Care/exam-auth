@@ -74,8 +74,8 @@ artifacts/
 *.scc
 
 # Ignore all .env files
-**/*.env
-.env
+**/*appsettings.json
+appsettings.json
 
 
 # Chutzpah Test files
