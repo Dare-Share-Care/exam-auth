@@ -20,7 +20,7 @@ public class AuthService : IAuthService
         throw new NotImplementedException();
     }
 
-    public async Task RegisterCustomerAsync(RegisterDto dto)
+    public async Task<UserDto> RegisterCustomerAsync(RegisterDto dto)
     {
         //Validate that email is not already in use
         var users = await _userRepository.ListAsync();
@@ -39,6 +39,17 @@ public class AuthService : IAuthService
         //Add user to database
         await _userRepository.AddAsync(user);
         await _userRepository.SaveChangesAsync();
+        
+        //Map user to userDto
+        var userDto = new UserDto
+        {
+            Id = user.Id,
+            Email = user.Email,
+            RoleId = user.RoleId
+        };
+        
+        //Return userDto
+        return userDto;
     }
 
     public Task ChangePasswordAsync(ChangePasswordDto dto)
