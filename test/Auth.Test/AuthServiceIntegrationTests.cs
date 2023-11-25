@@ -23,7 +23,7 @@ public class AuthServiceIntegrationTests
 
         var userRepository = new EfRepository<User>(dbContext);
         var configuration = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
+            .AddJsonFile("appsettings.Test.json")
             .Build();
         var authService = new AuthService(userRepository, configuration);
 
