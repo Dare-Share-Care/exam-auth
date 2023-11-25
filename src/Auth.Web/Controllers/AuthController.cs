@@ -28,4 +28,11 @@ public class AuthController : ControllerBase
         var token = await _authService.LoginAsync(dto);
         return Ok(token);
     }
+    
+    [HttpPost("change-password")]
+    public async Task<IActionResult> ChangePasswordAsync(ChangePasswordDto dto)
+    {
+        await _authService.ChangePasswordAsync(dto);
+        return Ok();
+    }
 }

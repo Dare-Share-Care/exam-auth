@@ -66,9 +66,32 @@ public class AuthService : IAuthService
         return userDto;
     }
 
-    public Task<UserDto> ChangePasswordAsync(ChangePasswordDto dto)
+    public async Task<UserDto> ChangePasswordAsync(ChangePasswordDto dto)
     {
-        throw new NotImplementedException();
+        //Get user from database
+        var user = await _userRepository.FirstOrDefaultAsync(new GetUserByEmailWithRoleSpec(dto.Email));
+        
+        if (user == null)
+            throw new Exception("User not found");
+
+        //Validate old password
+        if (!BCrypt.Net.BCrypt.Verify(dto.OldPassword, user.Password))
+            throw new Exception("Old password is incorrect");
+        
+        //Hash new password
+        user.Password = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+        await _userRepository.SaveChangesAsync();
+        
+        //Map user to userDto
+        var userDto = new UserDto
+        {
+            Id = user.Id,
+            Email = user.Email,
+            RoleId = user.RoleId
+        };
+        
+        //Return userDto
+        return userDto;
     }
     
     private string CreateToken(User user)
