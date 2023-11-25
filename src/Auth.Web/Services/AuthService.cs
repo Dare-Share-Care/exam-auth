@@ -1,7 +1,12 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using Auth.Web.Entities;
 using Auth.Web.Interfaces.DomainServices;
 using Auth.Web.Interfaces.Repositories;
 using Auth.Web.Models.Dto;
+using Auth.Web.Specifications;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Auth.Web.Services;
 
@@ -14,9 +19,17 @@ public class AuthService : IAuthService
         _userRepository = userRepository;
     }
 
-    public Task<string> LoginAsync(LoginDto dto)
+    public async Task<string> LoginAsync(LoginDto dto)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.FirstOrDefaultAsync(new GetUserByEmailWithRoleSpec(dto.Email));
+
+        // validate
+        if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
+            throw new Exception("Username or password is incorrect");
+
+        var token = CreateToken(user);
+
+        return token;
     }
 
     public async Task<UserDto> RegisterCustomerAsync(RegisterDto dto)
@@ -51,8 +64,33 @@ public class AuthService : IAuthService
         return userDto;
     }
 
-    public Task ChangePasswordAsync(ChangePasswordDto dto)
+    public Task<UserDto> ChangePasswordAsync(ChangePasswordDto dto)
     {
         throw new NotImplementedException();
+    }
+    
+    private string CreateToken(User user)
+    {
+        //Create claims
+        var claims = new List<Claim>
+        {
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Email, user.Email),
+            new(ClaimTypes.Role, user.Role.RoleType.ToString())
+        };
+
+        //Get JWT Key from .env file
+        DotNetEnv.Env.Load();
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY")!));
+
+        //Create token
+        var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+        var token = new JwtSecurityToken(
+            claims: claims,
+            expires: DateTime.UtcNow.AddDays(1),
+            signingCredentials: cred
+        );
+        var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+        return jwt;
     }
 }

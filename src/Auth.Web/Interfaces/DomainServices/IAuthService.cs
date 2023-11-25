@@ -7,5 +7,5 @@ public interface IAuthService
 {
     Task<string> LoginAsync(LoginDto dto);
     Task<UserDto> RegisterCustomerAsync(RegisterDto dto);
-    Task ChangePasswordAsync(ChangePasswordDto dto);
+    Task<UserDto> ChangePasswordAsync(ChangePasswordDto dto);
 }

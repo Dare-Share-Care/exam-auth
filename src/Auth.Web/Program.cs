@@ -40,8 +40,9 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
-//JWT Configuration
-var key = Encoding.UTF8.GetBytes("super secret key");
+//JWT Key from .env file
+DotNetEnv.Env.Load();
+var key = Encoding.UTF8.GetBytes(System.Environment.GetEnvironmentVariable("JWT_KEY")!);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
