@@ -1,4 +1,6 @@
+using Auth.Web.Interfaces.DomainServices;
 using Microsoft.AspNetCore.Mvc;
+using MTOGO.Web.Models.Dto.Auth;
 
 namespace Auth.Web.Controllers;
 
@@ -6,5 +8,17 @@ namespace Auth.Web.Controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
+    private readonly IAuthService _authService;
+
+    public AuthController(IAuthService authService)
+    {
+        _authService = authService;
+    }
     
+    [HttpPost("register")]
+    public async Task<IActionResult> RegisterCustomerAsync(RegisterDto dto)
+    {
+        await _authService.RegisterCustomerAsync(dto);
+        return Ok();
+    }
 }
