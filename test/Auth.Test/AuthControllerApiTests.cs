@@ -19,7 +19,7 @@ public class AuthControllerApiTests : IClassFixture<CustomWebApplicationFactory<
     }
    
     [Fact]
-    public async Task RegisterEndpoint_ReturnsSuccessStatusCode()
+    public async Task RegisterEndpoint_ReturnsSuccessStatusCodeAndCreatesUser()
     {
         // Arrange
         var client = _factory.CreateClient();

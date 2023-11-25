@@ -73,6 +73,11 @@ artifacts/
 *.svclog
 *.scc
 
+# Ignore all .env files
+**/*.env
+.env
+
+
 # Chutzpah Test files
 _Chutzpah*
 
