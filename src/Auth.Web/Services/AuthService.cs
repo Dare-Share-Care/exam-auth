@@ -81,7 +81,7 @@ public class AuthService : IAuthService
             new(ClaimTypes.Role, user.Role.RoleType.ToString())
         };
 
-        //Get JWT Key
+        //Get JWT Key from configuration
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]!));
 
         //Create token
