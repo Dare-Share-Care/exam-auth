@@ -7,7 +7,7 @@ using Auth.Web.Models.Dto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Auth.Test;
+namespace Auth.Test.Tests.ApiTests;
 
 public class AuthControllerApiTests : IClassFixture<CustomWebApplicationFactory<Program>>
 {

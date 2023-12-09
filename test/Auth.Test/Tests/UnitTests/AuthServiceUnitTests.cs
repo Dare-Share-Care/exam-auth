@@ -1,13 +1,12 @@
 using Auth.Web.Entities;
 using Auth.Web.Interfaces.DomainServices;
 using Auth.Web.Interfaces.Repositories;
-using Auth.Web.Services;
 using Auth.Web.Models.Dto;
+using Auth.Web.Services;
 using Microsoft.Extensions.Configuration;
 using Moq;
 
-
-namespace Auth.Test;
+namespace Auth.Test.Tests.UnitTests;
 
 public class AuthServiceUnitTests
 {

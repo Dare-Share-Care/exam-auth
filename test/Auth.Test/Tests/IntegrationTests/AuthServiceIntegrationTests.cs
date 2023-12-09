@@ -1,12 +1,12 @@
 using Auth.Web.Data;
 using Auth.Web.Entities;
-using Auth.Web.Services;
 using Auth.Web.Models.Dto;
+using Auth.Web.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Auth.Test;
+namespace Auth.Test.Tests.IntegrationTests;
 
 public class AuthServiceIntegrationTests
 {
