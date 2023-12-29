@@ -47,7 +47,7 @@ public class AuthService : IAuthService
         {
             Email = dto.Email,
             Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
-            RoleId = 3 //Customer
+            RoleId = 1 //Customer
         };
 
         //Add user to database
