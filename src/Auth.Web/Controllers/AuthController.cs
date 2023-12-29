@@ -19,7 +19,7 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> RegisterCustomerAsync(RegisterDto dto)
     {
         await _authService.RegisterCustomerAsync(dto);
-        return Ok();
+        return Ok("Account created successfully");
     }
     
     [HttpPost("login")]
@@ -33,6 +33,6 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> ChangePasswordAsync(ChangePasswordDto dto)
     {
         await _authService.ChangePasswordAsync(dto);
-        return Ok();
+        return Ok("Password changed successfully");
     }
 }
